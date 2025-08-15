@@ -24,10 +24,10 @@ public with sharing class Restaurante {
                 existente = true;
             }
         }
-        if(existente) System.debug('Erro ao adiciona produto, ele ja existe');
+        if(existente) System.debug('Erro ao adicionar produto, ele ja existe');
         else {
             cardapio.add(produto);
-            System.debug('Produto aducuonado com sucesso ao cardapio');
+            System.debug('Produto adicionado com sucesso ao cardapio');
         }
     }
     
