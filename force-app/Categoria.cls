@@ -1,4 +1,4 @@
-public Enum  Categoria {
+public Enum  CategoriasRestaurantes {
     Pizzaria,
     Lanchonete,
     Japones,
