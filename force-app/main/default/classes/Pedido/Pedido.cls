@@ -12,6 +12,7 @@ public with sharing class Pedido {
         this.Restaurante = restaurante;
         this.itens = new List<ItemPedido>();
         this.Status = StatusPedido.CARRINHO;
+        total = 0;
         
     }
 
@@ -27,7 +28,7 @@ public with sharing class Pedido {
             }
             if(!jaExiste) itens.add(new ItemPedido(produto,quantidade));
 
-        
+            CalcularTotal();
         }
         else System.debug('Produto não encontrado no cardápio do restaurante.');
         
