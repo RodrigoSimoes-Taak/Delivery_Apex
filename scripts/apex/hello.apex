@@ -18,3 +18,16 @@ pedido.adicionarItemPedido(coca, 1);
 pedido.exibirResumo();
 pedido.confirmarPedido();
 pedido.exibirResumo();
+
+System.debug('');
+System.debug('');
+System.debug('');
+System.debug('');
+System.debug('');
+List<Pedido> pedidosDoMes = new List<Pedido>();
+pedidosDoMes.add(pedido);
+RelatoriosNew relatorio = new RelatoriosNew();
+Map<Produto, Integer> relatorioMaisVendidos = relatorio.gerarRelatorioProdutosMaisVendidos(pedidosDoMes);
+for(integer i = 0; i < relatorioMaisVendidos.size(); i++) {
+    System.debug('Produto: ' + relatorioMaisVendidos.keySet(i).nome + ', Vendas: ' + relatorioMaisVendidos.values()[i]);
+    }
