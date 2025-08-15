@@ -16,4 +16,5 @@ pedido.adicionarItemPedido(pizzaMussarela, 2);
 pedido.adicionarItemPedido(coca, 1);
 
 pedido.exibirResumo();
-//pedido.confirmarPedido();
+pedido.confirmarPedido();
+pedido.exibirResumo();
