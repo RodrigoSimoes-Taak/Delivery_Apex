@@ -1,28 +1,32 @@
 public with sharing class Pedido {
-    private Cliente _cliente;
-    private Restaurante _restaurante;
-    private List<ItemPedido> itens;
-    private StatusPedido _Status;
-    private double _total = 0;
 
-    public Cliente cliente {get{ return _cliente;} set{_cliente = value;}}
-    public Restaurante restaurante {get{ return _Restaurante;} set{_Restaurante = value;}}
-    public List<ItemPedido> itens {get{ return itens;} set{itens = value;}}
-    public StatusPedido status {get{ return _Status;} set{_Status = value;}}
-    public double total {get{ return _total;} set{_total = value;}}
+
+    public Cliente cliente {get; set;}
+    public Restaurante restaurante {get; set;}
+    public List<ItemPedido> itens {get; set;} 
+    public StatusPedido status {get; set;}
+    public double total {get; private set;}
 
     public Pedido(Cliente cliente, Restaurante restaurante) {
-        this._cliente = cliente;
-        this._Restaurante = restaurante;
+        this.cliente = cliente;
+        this.Restaurante = restaurante;
         this.itens = new List<ItemPedido>();
-        this._Status = StatusPedido.CARRINHO;
+        this.Status = StatusPedido.CARRINHO;
         
     }
 
-    public adicionarItemPedido(Produto produto, int quantidade){
+    public void adicionarItemPedido(Produto produto, integer quantidade){
         if(restaurante.cardapio.contains(produto)) {
-            if(itens.contains(produto))itens.get(itens.indexOf[produto]).quantidade+=quantidade;
-            else itens.add(new ItemPedido(produto,quantidade));
+            Boolean jaExiste = false;
+            for(ItemPedido item : itens ){
+                if(item.produto == produto){
+                    jaExiste = true;
+                    item.quantidade += quantidade;
+                    break;
+                }
+            }
+            if(!jaExiste) itens.add(new ItemPedido(produto,quantidade));
+
         
         }
         else System.debug('Produto não encontrado no cardápio do restaurante.');
@@ -30,13 +34,13 @@ public with sharing class Pedido {
     }
 
     public void CalcularTotal(){
-        for (Double item : itens){
+        for (ItemPedido item : itens){
             total += item.subTotal;
         }
     }
 
     public void confirmarPedido(){
-        if(status = StatusPedido.CARRINHO && itens.size() > 0){
+        if(status == StatusPedido.CARRINHO && itens.size() > 0){
             status = StatusPedido.EM_PROCESSAMENTO;
             System.debug('Pedido confirmado e em processamento.');
         }

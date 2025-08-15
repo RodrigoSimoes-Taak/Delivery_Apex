@@ -1,13 +1,10 @@
 public with sharing class Cliente {
-    private String _nome;
-    private String _cpf;
-    private String _endereco;
-    private String _telefone;
 
-    public String nome {get{ _nome;} set{_nome = value;}}
-    public String cpf {get{ _cpf;} set{ _cpf = value;}}
-    public String endereco {get{ _endereco;} set{_endereco = value;}}
-    public String telefone {get{ _telefone;} set{_telefone = value;}}
+
+    public String nome {get; set;}
+    public String cpf {get; set;}
+    public String endereco {get; set;}
+    public String telefone {get; set;}
     
 
     public Cliente() {
@@ -15,9 +12,9 @@ public with sharing class Cliente {
     }
 
     public Cliente(String nome, String cpf, String endereco, String telefone) {
-        this._nome = nome;
-        this._cpf = cpf;
-        this._endereco = endereco;
-        this._telefone = telefone;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.telefone = telefone;
     }
 }

@@ -1,4 +1,4 @@
-public with sharing enum StatusPedido {
+public enum StatusPedido {
     CARRINHO,
     EM_PROCESSAMENTO,
     ENTREGUE    

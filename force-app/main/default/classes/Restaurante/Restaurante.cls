@@ -1,35 +1,39 @@
 public with sharing class Restaurante {
-    private String _nome;
-    private String _endereco;
-    private Liust<Produto> _cardapio = new List<Produto>();
-    private Categoria _categoria;
+ 
 
-    public String nome {get{ _nome;} set{_nome = value;}}
-    public String endereco {get{ _endereco;} set{_endereco = value;}}
-    public List<Produto> cardapio {get{ return _cardapio;} set{_cardapio = value;}}
-    public Categoria categoria {get{ return _categoria;} set{_categoria = value;}}
+    public String nome {get; set;}
+    public String endereco {get; set;}
+    public List<Produto> cardapio {get; set;}
+    public Categoria categoria {get; set;}
     
     public Restaurante() {
-        
+        cardapio = new List<Produto>();
     }
     public Restaurante(String nome, String endereco, List<Produto> cardapio, Categoria categoria) {
-        this._nome = nome;
-        this._endereco = endereco;
-        this._cardapio = cardapio;
-        this._categoria = categoria;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.cardapio = cardapio;
+        this.categoria = categoria;
     }
 
     public void adicionarProduto(Produto produto){
-        if(cardapio.containsIgnoreCase(produto.nome)) System.debug('Erro ao adiciona produto, ele ja existe');
+        
+        Boolean existente = false;
+        for(Produto p : cardapio){
+            if(p.nome.toLowerCase() == produto.nome.toLowerCase()) {
+                existente = true;
+            }
+        }
+        if(existente) System.debug('Erro ao adiciona produto, ele ja existe');
         else {
-            produto.nome = produto.nome.toLowerCase();
             cardapio.add(produto);
+            System.debug('Produto aducuonado com sucesso ao cardapio');
         }
     }
     
     public void exibirCardapio(){
-        for(int i = 0; i < cardapio.size(); i++){
-            System.debug(i+1 + ' Nome: ' + cardapio[i].nome + ', Preço: ' + produto[i].preco);
+        for(integer i = 0; i < cardapio.size(); i++){
+            System.debug(i+1 + ' Nome: ' + cardapio[i].nome + ', Preço: ' + cardapio[i].preco);
         }
 
     }
@@ -39,7 +43,7 @@ public with sharing class Restaurante {
         Boolean achado = false;
         for(Produto produto : cardapio){
             if(produto.nome.containsIgnoreCase(termoBusca)) {
-                System.debug(' Nome: ' + cardapio.nome + ', Preço: ' + produto.preco);
+                System.debug(' Nome: ' + produto.nome + ', Preço: ' + produto.preco);
                 achado = true;
             }
 
