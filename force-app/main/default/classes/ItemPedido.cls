@@ -1,13 +1,14 @@
 public with sharing class ItemPedido {
-    Produto produto;
-    integer quantidade;
-    Double subTotal;
+    public Produto produto;
+    public integer quantidade;
+    public Double subTotal {get; private set;}
     public ItemPedido(Produto produto, integer quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
     }
 
     public double calcularSubTotal() {
-        this.subTotal = this.produto.preco * this.quantidade;
+        subTotal = produto.preco * quantidade;
+        return subTotal;
     }
 }

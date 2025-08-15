@@ -1,7 +1,7 @@
 public with sharing class Restaurante {
     public string nome {get; private set;}
     public string endereco {get; private set;}
-    private public List<Produto> cardapio = new List<Produto>();
+    public List<Produto> cardapio = new List<Produto>();
     public CategoriaRestaurante categoria;
    
      public Restaurante() {
