@@ -1,10 +1,17 @@
-// Use .apex files to store anonymous Apex.
-// You can execute anonymous Apex in VS Code by selecting the
-//     apex text and running the command:
-//     SFDX: Execute Anonymous Apex with Currently Selected Text
-// You can also execute the entire file by running the command:
-//     SFDX: Execute Anonymous Apex with Editor Contents
+Restaurante restaurante = new Restaurante('Bella Pizza', 'Av antártico 381', CategoriaRestaurante.PIZZARIA);
+Produto produto = new Produto('Pizza Mussarela', 35.00);
+Produto produto2 = new Produto('Pizza Calabresa', 38.00);
+Produto produto3 = new Produto('Refrigerante', 8.00);
+Produto produto4 = new Produto('Pastel', 6.50);
 
-string tempvar = 'Enter_your_name_here';
-System.debug('Hello World!');
-System.debug('My name is ' + tempvar);
+
+Teste.testAdicionarProduto(produto, restaurante);
+Teste.testAdicionarProduto(produto2, restaurante);
+Teste.testAdicionarProduto(produto3, restaurante);
+Teste.testAdicionarProduto(produto4, restaurante);
+
+Teste.testExibirCardapio(restaurante);
+
+Teste.testBuscarProdutos('Pizza', restaurante);
+Teste.testBuscarProdutos('Calabresa', restaurante);
+Teste.testBuscarProdutos('Batata', restaurante);

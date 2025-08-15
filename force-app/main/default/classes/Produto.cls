@@ -14,4 +14,8 @@ public with sharing class Produto {
     public Decimal getPreco() {
         return preco;
     }
+
+    public override String toString() {
+        return nome + ' - R$' + preco.setScale(2);
+    }
 }
