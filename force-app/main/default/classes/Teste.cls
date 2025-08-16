@@ -19,4 +19,26 @@ public class Teste {
         }
         System.debug('Teste de busca de produtos concluído');
     }
+
+    public static void testCriarPedidoComProdutosValidos(Pedido pedido) {
+        Produto produto = new Produto('Pizza Mussarela', 35.00);
+        Produto produto2 = new Produto('Refrigerante', 8.00);
+        pedido.adicionarItemPedido(produto, 2);
+        pedido.adicionarItemPedido(produto2, 1);
+        pedido.adicionarItemPedido(produto, 1);
+        pedido.exibirResumo();
+        pedido.confirmarPedido();
+        System.debug('Status do pedido: ' + pedido.getStatus());
+        System.debug('Teste de criação de pedido com produtos válidos concluído');
+    }
+
+    public static void testAdicionarProdutoInvalido(Pedido pedido) {
+        Produto produto = new Produto('Ovo', 0.99);
+        pedido.adicionarItemPedido(produto, 2);
+        pedido.confirmarPedido();
+        Produto produto2 = new Produto('Pizza Calabresa', 38.00);
+        pedido.adicionarItemPedido(produto2, 1);
+        pedido.exibirResumo();
+        System.debug('Teste de criação de pedido com produtos inválidos concluído');
+    }
 }

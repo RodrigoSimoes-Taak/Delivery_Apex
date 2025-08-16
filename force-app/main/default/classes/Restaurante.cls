@@ -30,7 +30,7 @@ public with sharing class Restaurante {
     public void adicionarProduto(Produto produto) {
         if(produto != null) {
             for(Produto p : this.cardapio) {
-                if(p.getNome().toLowerCase().equals(produto.getNome().toLowerCase())) {
+                if(p.getNome().equalsIgnoreCase(produto.getNome())) {
                     System.debug('Produto já está no cardápio');
                     return;
                 }
@@ -55,7 +55,7 @@ public with sharing class Restaurante {
     public List<Produto> buscarProdutos(String termoBusca){
         List<Produto> produtos = new List<Produto>();
         for(Produto p : this.cardapio){
-            if(p.getNome().toLowerCase().contains(termoBusca.toLowerCase())){
+            if(p.getNome().containsIgnoreCase(termoBusca)){
                 produtos.add(p);
             }
         }
