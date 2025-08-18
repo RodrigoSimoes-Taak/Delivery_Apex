@@ -45,4 +45,60 @@ public class Restaurante {
         }
         return produtosEncontrados;
     }
+
+    public Map<String, Integer> gerarRelatorioProdutosMaisVendidos(List<Pedido> pedidos) {
+        Map<String, Integer> vendas = new Map<String, Integer>();
+        List<Integer> quantidades = new List<Integer>();
+
+        for (Pedido pedido : pedidos) {
+            for (ItemPedido item : pedido.itens) {
+                if (vendas.containsKey(item.produto.nome)) {
+                    vendas.put(item.produto.nome, vendas.get(item.produto.nome) + item.quantidade);
+                } else {
+                    vendas.put(item.produto.nome, item.quantidade);
+                }
+                quantidades.add(item.quantidade);
+            }
+        }
+
+        quantidades.sort();
+
+        System.debug('Relatório de Produtos Mais Vendidos:');
+        // colocar os 3 itens mais pedidos em ordem decrescente
+        List<String> produtosOrdenados = new List<String>(vendas.keySet());
+        produtosOrdenados.sort();
+        System.debug(quantidades);
+        for(Integer j = 0; j < 3; j++) {
+            for (Integer i = 0; i < produtosOrdenados.size(); i++) {
+                String produto = produtosOrdenados[i];
+                Integer quantidade = vendas.get(produto);
+                if (quantidade >= quantidades[quantidades.size() - 1 - j]) {
+                    System.debug(j + 1 + '. ' + produto + ': ' + quantidade + ' unidades vendidas');
+                    produtosOrdenados.remove(i);
+                }
+            }
+        }
+        
+
+        return vendas;
+    }
+
+    public Map<String, List<Pedido>> gerarRelatorioPedidosPorCliente(List<Pedido> pedidos, List<String> cpfs) {
+        Map<String, List<Pedido>> relatorio = new Map<String, List<Pedido>>();
+
+        for (Pedido pedido : pedidos) {
+            if (cpfs.contains(pedido.cliente.cpf)) {
+                if (!relatorio.containsKey(pedido.cliente.nome)) {
+                    relatorio.put(pedido.cliente.nome, new List<Pedido>());
+                }
+                relatorio.get(pedido.cliente.nome).add(pedido);
+            }
+
+        }
+        for (String clienteNome : relatorio.keySet()) {
+            System.debug('Cliente: ' + clienteNome + ' - ' + relatorio.get(clienteNome).size() + ' Pedidos' );
+        }
+        return relatorio;
+    }
+
 }

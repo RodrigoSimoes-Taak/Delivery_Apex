@@ -14,6 +14,15 @@ Pedido pedido = new Pedido(cliente, restaurante);
 pedido.adicionarItemPedido(pizzaMussarela, 1);
 pedido.adicionarItemPedido(pizzaCalabresa, 2);
 pedido.adicionarItemPedido(refrigerante, 4);
+pedido.adicionarItemPedido(pastel, 3);
 pedido.exibirResumo();
 pedido.confirmarPedido();
 
+List<Pedido> pedidos = new List<Pedido>();
+pedidos.add(pedido);
+
+List<String> cpfs = new List<String>();
+cpfs.add(cliente.cpf);
+
+restaurante.gerarRelatorioProdutosMaisVendidos(pedidos);
+restaurante.gerarRelatorioPedidosPorCliente(pedidos, cpfs);
