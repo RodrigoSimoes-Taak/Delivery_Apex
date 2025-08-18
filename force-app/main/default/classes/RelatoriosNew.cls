@@ -21,9 +21,32 @@ public with sharing class RelatoriosNew {
             }
         }
 
-        for(Produto produto : relatorio.keySet()) {
-            Integer quantidade = relatorio.get(produto);
-            System.debug(produto.nome + ': ' + quantidade);
+        List<Produto> produtos = new List<Produto>(relatorio.keySet());
+        List<Integer> quantidades = new List<Integer>(relatorio.values());
+
+        // Ordena os produtos por quantidade vendida em ordem decrescente
+        for (Integer i = 0; i < produtos.size() - 1; i++) {
+            for (Integer j = i + 1; j < produtos.size(); j++) {
+                if (relatorio.get(produtos[i]) < relatorio.get(produtos[j])) {
+                    // Troca os produtos
+                    Produto tempProduto = produtos[i];
+                    produtos[i] = produtos[j];
+                    produtos[j] = tempProduto;
+
+                    // Troca as quantidades correspondentes
+                    Integer tempQuantidade = quantidades[i];
+                    quantidades[i] = quantidades[j];
+                    quantidades[j] = tempQuantidade;
+                }
+            }
+        }
+
+        // Exibe o relatório ordenado
+        System.debug('Relatório de Produtos Mais Vendidos:');
+        System.debug('-----------------------------------');
+        System.debug('Produto - Quantidade Vendida');
+        for(integer i = 0; i < 3; i++) {
+            System.debug('Produto: ' + produtos[i].nome + ', Quantidade Vendida: ' + quantidades[i]);
         }
 
         return relatorio;
