@@ -1,5 +1,5 @@
 public class Pedido {
-    private Cliente cliente;
+    public Cliente cliente {get; private set;}
     private Restaurante restaurante;
     public List<ItemPedido> itens;
     private StatusPedido status ;

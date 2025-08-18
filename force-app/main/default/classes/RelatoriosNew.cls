@@ -51,4 +51,32 @@ public with sharing class RelatoriosNew {
 
         return relatorio;
     }
+
+    public Map<Cliente, List<Pedido>> gerarRelatorioPedidosPorCliente(List<Pedido> pedidos) {
+        Map<Cliente, List<Pedido>> relatorio = new Map<Cliente, List<Pedido>>();
+
+        // Verifica se a lista de pedidos está vazia
+        if(pedidos == null || pedidos.isEmpty()) {
+            System.debug('Nenhum pedido encontrado para gerar o relatório.');
+            return relatorio;
+        }
+
+        // Agrupa os pedidos por cliente
+        for(Pedido pedido : pedidos) {
+            Cliente cliente = pedido.cliente;
+            if(!relatorio.containsKey(cliente)) {
+                relatorio.put(cliente, new List<Pedido>());
+            }
+            relatorio.get(cliente).add(pedido);
+        }
+
+        // Exibe o relatório
+        System.debug('Relatório de Pedidos por Cliente:');
+        System.debug('-----------------------------------');
+        for(Cliente cliente : relatorio.keySet()) {
+            System.debug('Cliente: ' + cliente.nome + ', Pedidos: ' + relatorio.get(cliente).size());
+        }
+
+        return relatorio;
+    }   
 }

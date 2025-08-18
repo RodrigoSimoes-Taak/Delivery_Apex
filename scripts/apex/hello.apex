@@ -20,9 +20,9 @@ Pedido pedidoAna = new Pedido(clienteAna, BellaPizzas, StatusPedido.CARRINHO);
 pedidoAna.adicionarItemPedido(pizzaMussarela, 2);
 pedidoAna.adicionarItemPedido(pizzaCala, 3);
 
-Pedido pedidoCarlos = new Pedido(clienteCarlos, BellaPizzas, StatusPedido.CARRINHO);
-pedidoCarlos.adicionarItemPedido(pizzaMussarela, 3);
-pedidoCarlos.adicionarItemPedido(coca, 1);
+Pedido pedidoAna2 = new Pedido(clienteAna, BellaPizzas, StatusPedido.CARRINHO);
+pedidoAna2.adicionarItemPedido(pizzaMussarela, 3);
+pedidoAna2.adicionarItemPedido(coca, 1);
 
 Pedido pedidoJulia = new Pedido(clienteJulia, BellaPizzas, StatusPedido.CARRINHO);
 pedidoJulia.adicionarItemPedido(pizzaMussarela, 2);
@@ -36,9 +36,13 @@ System.debug('');
 System.debug('');
 List<Pedido> pedidosDoMes = new List<Pedido>();
 pedidosDoMes.add(pedidoAna);
-pedidosDoMes.add(pedidoCarlos);
+pedidosDoMes.add(pedidoAna2);
 pedidosDoMes.add(pedidoJulia);
 RelatoriosNew relatorio = new RelatoriosNew();
-Map<Produto, Integer> relatorioMaisVendidos = relatorio.gerarRelatorioProdutosMaisVendidos(pedidosDoMes);
+//Map<Produto, Integer> relatorioMaisVendidos = relatorio.gerarRelatorioProdutosMaisVendidos(pedidosDoMes);
+
+Map<Cliente, List<Pedido>> relatorioPedidoPorCliente = relatorio.gerarRelatorioPedidosPorCliente(pedidosDoMes);
+
+
 
 System.debug('');
