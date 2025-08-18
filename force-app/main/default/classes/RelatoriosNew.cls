@@ -21,8 +21,11 @@ public with sharing class RelatoriosNew {
             }
         }
 
-        return relatorio;
+        for(Produto produto : relatorio.keySet()) {
+            Integer quantidade = relatorio.get(produto);
+            System.debug(produto.nome + ': ' + quantidade);
+        }
 
-        
+        return relatorio;
     }
 }
