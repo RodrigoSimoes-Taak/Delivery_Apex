@@ -41,4 +41,31 @@ public class Teste {
         pedido.exibirResumo();
         System.debug('Teste de criação de pedido com produtos inválidos concluído');
     }
+
+    public static void testRelatorioProdutosMaisVendidos(List<Pedido> pedidos){
+        Map<Produto, Integer> relatorios = Relatorio.gerarRelatorioProdutosMaisVendidos(pedidos);
+        for(Produto p : relatorios.keySet()) {
+            System.debug('Produto: ' + p.getNome() + ', Vendidos: ' + relatorios.get(p));
+        }
+    }
+
+    public static void testRelatorioPedidosPorCliente(List<Pedido> pedidos, List<String> cpfs, Restaurante restaurante) {
+        for(Integer i = 0; i < pedidos.size(); i++) {
+            if(!pedidos[i].getRestaurante().getNome().equals(restaurante.getNome())) {
+                pedidos.remove(i);
+                i--;
+            }
+        }
+
+        Map<String, List<Pedido>> relatoriosPorCliente = Relatorio.gerarRelatorioPedidosPorCliente(pedidos, cpfs);
+
+        for(String cpf : relatoriosPorCliente.keySet()) {
+            List<Pedido> pedidosCliente = relatoriosPorCliente.get(cpf);
+            if(pedidosCliente.size() > 1) {
+                System.debug('Cliente: ' + cpf + ' - ' + pedidosCliente.size() + ' pedidos');
+            }else{
+                System.debug('Cliente: ' + cpf + ' - ' + pedidosCliente.size() + ' pedido');
+            }
+        }
+    }
 }
