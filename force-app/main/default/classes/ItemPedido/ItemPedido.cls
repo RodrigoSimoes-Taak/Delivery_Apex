@@ -14,4 +14,6 @@ public with sharing class ItemPedido {
     private Double calcularSubTotal(){
         return subTotal = produto.preco * quantidade;
     }
+
+
 }

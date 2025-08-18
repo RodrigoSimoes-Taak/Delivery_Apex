@@ -13,4 +13,10 @@ public with sharing class Produto {
         this.preco = preco;
     
     }
+
+    public Produto(String nome) {
+        this.nome = nome;
+        this.preco = preco;
+    
+    }
 }
