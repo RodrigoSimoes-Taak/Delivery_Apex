@@ -47,4 +47,25 @@ pedido2.confirmarPedido();
 pedido2.exibirResumo();
 
 
+//Testes etapa 4
+
+Cliente cliente2 = new Cliente('Carlos', '987.654.321-00', 'Rua das Flores, 45', '(11) 98888-7777');
+Cliente cliente3 = new Cliente('Julia', '111.222.333-44', 'Av. Brasil, 100', '(11) 97777-6666');
+Pedido pedido3 = new Pedido(cliente2, restaurante);
+pedido3.adicionarItemPedido(produto1, 2);
+pedido3.adicionarItemPedido(produto2, 2);
+Pedido pedido4 = new Pedido(cliente3, restaurante);
+pedido4.adicionarItemPedido(produto2, 5);
+
+
+List<Pedido> pedidos = new List<Pedido>{pedido1, pedido2, pedido3};
+
+Pedido.gerarRelatorioProdutosMaisVendidos(pedidos);
+
+Pedido.gerarRelatorioPedidosPorCliente(pedidos, new List<String>{cliente1.cpf, cliente2.cpf, cliente3.cpf});
+
+
+
+
+
 
